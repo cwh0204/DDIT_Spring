@@ -7,11 +7,13 @@ import hello.core.member.MemberServiceImpl;
 
 public class MemberApp {
     public static void main(String[] args) {
-        MemberService service = new MemberServiceImpl();
-        Member member = new Member(Grade.VIP, "memberA", 1L);
-        service.join(member);
+        AppConfig appConfig = new AppConfig();
 
-        Member findMember = service.findMember(1L);
+        MemberService memberService = appConfig.memberService();
+        Member member = new Member(Grade.VIP, "memberA", 1L);
+        memberService.join(member);
+
+        Member findMember = memberService.findMember(1L);
         System.out.println("member = " + member.getName());
         System.out.println("findMember = " + findMember.getName());
     }
