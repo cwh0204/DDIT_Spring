@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.AdrsMapper">
+	
+	<insert id="insertAdrs">
+	INSERT INTO ADDRESSBOOK (
+			ADRS_NO,
+			MEM_ID,
+			ADRS_NAME,
+			ADRS_TEL,
+			ADRS_ADD,
+			ADRS_MAIL
+		)VALUES (
+			ADRS_SEQUENCE.NEXTVAL,
+			#{memId},
+			#{adrsName},
+			#{adrsTel},
+			#{adrsAdd},
+			#{adrsMail}
+		)
+	</insert>
+	
+	<select id="selectAdrs" resultType="AdrsDTO">
+		SELECT 
+			ADRS_NO,
+			ADRS_NAME,
+			ADRS_TEL,
+			ADRS_ADD,
+			ADRS_MAIL
+		FROM ADDRESSBOOK
+		WHERE ADRS_NAME = #{adrsName} AND MEM_ID = #{memId}
+		ORDER BY ADRS_NO
+	</select>
+	
+	<select id="selectAdrsList" resultType="AdrsDTO">
+		SELECT 
+			ADRS_NO,
+			ADRS_NAME,
+			ADRS_TEL,
+			ADRS_ADD,
+			ADRS_MAIL
+		FROM ADDRESSBOOK
+		WHERE MEM_ID = #{memId}
+		ORDER BY ADRS_NO
+	</select>
+	
+	<update id="updateAdrs">
+		UPDATE ADDRESSBOOK
+		SET 
+			ADRS_NAME = #{adrsName},
+			ADRS_TEL = #{adrsTel},
+			ADRS_ADD = #{adrsAdd},
+			ADRS_MAIL = #{adrsMail}
+		WHERE
+			ADRS_NO = #{adrsNo}
+	</update>
+	
+	<delete id="deleteAdrs">
+		DELETE
+		FROM ADDRESSBOOK
+		WHERE ADRS_NO = #{addrsNo}
+	</delete>
+</mapper>

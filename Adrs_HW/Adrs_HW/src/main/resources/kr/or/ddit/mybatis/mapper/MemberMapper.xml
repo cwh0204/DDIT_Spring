@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.MemberMapper">
+	
+	<update id="updatePassword">
+		UPDATE MEMBER
+		SET MEM_PASS = #{memPass}
+		WHERE MEM_ID =
+		#{memId}
+	</update>
+	<insert id="insertMember">
+		INSERT INTO MEMBER (
+			mem_id,
+			mem_pass,
+			mem_name,
+			mem_regno1,
+			mem_regno2,
+			mem_bir,
+			mem_zip,
+			mem_add1,
+			mem_add2,
+			mem_hometel,
+			mem_comtel,
+			mem_hp,
+			mem_mail,
+			mem_job,
+			mem_like,
+			mem_memorial,
+			mem_memorialday
+		) VALUES (
+			#{memId},
+			#{memPass},
+			#{memName},
+			#{memRegno1},
+			#{memRegno2},
+			#{memBir},
+			#{memZip},
+			#{memAdd1},
+			#{memAdd2},
+			#{memHometel},
+			#{memComtel},
+			#{memHp},
+			#{memMail},
+			#{memJob},
+			#{memLike},
+			#{memMemorial},
+			#{memMemorialday}
+		)
+	</insert>
+	
+	<select id="selectMember" resultType="MemberDTO">
+		SELECT
+		MEM_ID,
+		MEM_PASS,
+		MEM_NAME,
+		MEM_REGNO1,
+		MEM_REGNO2,
+		MEM_BIR,
+		MEM_ZIP,
+		MEM_ADD1,
+		MEM_ADD2,
+		MEM_HOMETEL,
+		MEM_COMTEL,
+		MEM_HP,
+		MEM_MAIL,
+		MEM_JOB,
+		MEM_LIKE,
+		MEM_MEMORIAL,
+		MEM_MEMORIALDAY,
+		MEM_MILEAGE,
+		MEM_DELETE,
+		MEM_ROLE
+		FROM
+		MEMBER
+		WHERE
+		MEM_ID =
+		#{memId}
+	</select>
+	
+	<select id="selectMemberList" resultType="MemberDTO">
+		SELECT
+		MEM_ID,
+		MEM_PASS,
+		MEM_NAME,
+		MEM_REGNO1,
+		MEM_REGNO2,
+		MEM_BIR,
+		MEM_ZIP,
+		MEM_ADD1,
+		MEM_ADD2,
+		MEM_HOMETEL,
+		MEM_COMTEL,
+		MEM_HP,
+		MEM_MAIL,
+		MEM_JOB,
+		MEM_LIKE,
+		MEM_MEMORIAL,
+		MEM_MEMORIALDAY,
+		MEM_MILEAGE,
+		MEM_DELETE,
+		MEM_ROLE
+		FROM
+		MEMBER
+	</select>
+	
+	<update id="updateMember">
+		UPDATE member
+		SET
+			MEM_BIR = #{memBir},
+			<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(memZip)">
+				MEM_ZIP = #{memZip},
+			</if>
+			MEM_ADD1 = #{memAdd1},
+			MEM_ADD2 = #{memAdd2},
+			MEM_HOMETEL = #{memHometel},
+			MEM_COMTEL = #{memComtel},
+			MEM_HP = #{memHp},
+			MEM_MAIL = #{memMail},
+			MEM_JOB = #{memJob},
+			MEM_LIKE = #{memLike},
+			MEM_MEMORIAL = #{memMemorial},
+			MEM_MEMORIALDAY = #{memMemorialday}
+		WHERE
+			MEM_ID = #{memId}
+	</update>
+</mapper>

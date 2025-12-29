@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="https://logging.apache.org/xml/ns"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+                   https://logging.apache.org/xml/ns
+                   https://logging.apache.org/xml/ns/log4j-config-2.xsd">
+                   
+    <!-- appender (where) : 로그메시지 기록 미디어. ex) 콭솔, 파일, rolling 파일, DataBase -->
+<!--     layout : 로그 메시지 기록 형식(패턴) ex) PatternLayout : %c{50} [%p] - %m%n -->
+<!--     log leval : log event level -->
+<!--     		ERROR WARN INFO DEBUG TRACE -->
+<!-- 		로거에 설정된 레벨보다 이상의 등급으로 기록되는 로그메시지는 출력되지만, 그 미만의 로그는 무시됨. -->
+<!--     logger : 로그 이벤트를 생성하고, 로거에 설정된 이벤트 레벨과 실제 로그메시지의 이벤트 레벨을 비교하고,
+					이벤트 전파 여부를 판단하는 주제. -->
+<!-- 				"."을 기준으로 로거 계층 구조(트리)가 형성되고, 그 최상위에 Root 로거가 있음. -->
+<!-- 				특정 로거를 이용해 로그를 기록하는 경우, 해당 로거가 구체적인 설정이 없으면, 상위 로거의 레벨 설정이 로그 출력여부를 결정함.		 -->
+	<Appenders>
+		<Console name="CONSOLE">
+			<PatternLayout pattern="%c{50} [%p] - %m%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="ERROR">
+			<AppenderRef ref="CONSOLE" />
+		</Root>
+		<Logger name="kr.or.ddit" level="INFO" />
+		<Logger name="jdbc.sqltiming" level="DEBUG" />
+		<Logger name="jdbc.resultsettable" level="DEBUG" />
+<!-- 		<Logger name="kr.or.ddit" level="DEBUG" /> -->
+	</Loggers>
+</Configuration>
